@@ -89,8 +89,8 @@ class PickerCell: UITableViewCell, FormTableViewCell {
             if !configured {
                 pickerControl.translatesAutoresizingMaskIntoConstraints = false
                 contentView.addSubview(pickerControl)
-                contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[pickerControl]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["pickerControl":pickerControl]))
-                contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[pickerControl]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["pickerControl":pickerControl]))
+                contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[pickerControl]|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["pickerControl":pickerControl]))
+                contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[pickerControl]|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["pickerControl":pickerControl]))
                 configured = true
             }
         }
