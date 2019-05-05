@@ -148,7 +148,7 @@ class TextEntryCell: UITableViewCell, FormTableViewCell {
             contentView.addSubview(newTextField)
             textField = newTextField
             contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-15-[textField]-|", options: [], metrics: nil, views: ["textField":newTextField]))
-            contentView.addConstraints([NSLayoutConstraint(item: contentView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.height, multiplier: 1.0, constant: 60.0)])
+            contentView.addConstraints([NSLayoutConstraint(item: contentView, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.height, multiplier: 1.0, constant: 60.0)])
             textField = newTextField
         }
         formatterAdapter = row.formatter.map { FormatterAdapter(formatter: $0) }
@@ -160,7 +160,7 @@ class TextEntryCell: UITableViewCell, FormTableViewCell {
         textField?.isEnabled = row.enabled
         
         if let field = textField {
-            let events :UIControlEvents = [.valueChanged, .editingChanged, .editingDidEnd, .editingDidEndOnExit]
+            let events :UIControl.Event = [.valueChanged, .editingChanged, .editingDidEnd, .editingDidEndOnExit]
             clear(field, controlEvents: events)
             bind(field, controlEvents: events, action: { [row] _ in row.value = field.text as AnyObject? })
         }
