@@ -81,7 +81,7 @@ class BasicFormCell :UITableViewCell, FormTableViewCell {
     func configureCell(_ row: inout FormRow) {
         
         action = nil
-        contentView.addConstraints([NSLayoutConstraint(item: contentView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.height, multiplier: 1.0, constant: 60.0)])
+        contentView.addConstraints([NSLayoutConstraint(item: contentView, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.height, multiplier: 1.0, constant: 60.0)])
         
         switch row.type {
         case .toggleSwitch:
@@ -100,19 +100,19 @@ class BasicFormCell :UITableViewCell, FormTableViewCell {
             
         case .toggle:
             textLabel?.text = row.name
-            accessoryType = ((row.value as? Bool) ?? false) ? UITableViewCellAccessoryType.checkmark : .none
+            accessoryType = ((row.value as? Bool) ?? false) ? UITableViewCell.AccessoryType.checkmark : .none
             
             if row.enabled {
                 action = { [row] x in
-                    self.accessoryType = ((row.value as? Bool) ?? false) ? UITableViewCellAccessoryType.checkmark : .none
+                    self.accessoryType = ((row.value as? Bool) ?? false) ? UITableViewCell.AccessoryType.checkmark : .none
                 }
             }
             
         case .button:
             let button = UIButton(frame: bounds)
             
-            button.setTitle(row.name, for: UIControlState())
-            button.setTitleColor(tintColor, for: UIControlState())
+            button.setTitle(row.name, for: UIControl.State())
+            button.setTitleColor(tintColor, for: UIControl.State())
             
             button.translatesAutoresizingMaskIntoConstraints = false
             contentView.addSubview(button)
@@ -128,7 +128,7 @@ class BasicFormCell :UITableViewCell, FormTableViewCell {
             }
             
             if row.enabled {
-                bind(button, controlEvents: UIControlEvents.touchUpInside, action: action)
+                bind(button, controlEvents: UIControl.Event.touchUpInside, action: action)
             }
         case .specialized:
             assert(false, "Specialized cells should not be configured here.")
