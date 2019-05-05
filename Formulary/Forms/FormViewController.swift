@@ -61,7 +61,7 @@ open class FormViewController: UIViewController {
      *
      * - seealso: tableView
      */
-    open var tableViewStyle: UITableViewStyle = .grouped
+    open var tableViewStyle: UITableView.Style = .grouped
     
     /**
      * Enables or disables editing of the represented `Form`.
@@ -154,7 +154,7 @@ open class FormViewController: UIViewController {
             view.addSubview(tableView)
         }
         
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 60
         tableView.delegate = tableViewDelegate
         
@@ -168,8 +168,9 @@ open class FormViewController: UIViewController {
      */
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        NotificationCenter.default.addObserver(self, selector: #selector(FormViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(FormViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(FormViewController.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(FormViewController.keyboardWillHide(_:)), name:
+            UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     /**
@@ -197,7 +198,7 @@ private extension FormViewController {
                 scrollIndicatorInsets.bottom = tableView.frame.origin.y + self.tableView.frame.size.height - keyboardEndFrame.origin.y
                 
                 UIView.beginAnimations("keyboardAnimation", context: nil)
-                UIView.setAnimationCurve(UIViewAnimationCurve(rawValue: keyboardInfo.animationCurve) ?? .easeInOut)
+            UIView.setAnimationCurve(UIView.AnimationCurve(rawValue: keyboardInfo.animationCurve) ?? .easeInOut)
                 UIView.setAnimationDuration(keyboardInfo.animationDuration)
                 
                 tableView.contentInset = contentInset
@@ -219,7 +220,7 @@ private extension FormViewController {
         scrollIndicatorInsets.bottom = 0
         
         UIView.beginAnimations("keyboardAnimation", context: nil)
-        UIView.setAnimationCurve(UIViewAnimationCurve(rawValue: keyboardInfo.animationCurve) ?? .easeInOut)
+        UIView.setAnimationCurve(UIView.AnimationCurve(rawValue: keyboardInfo.animationCurve) ?? .easeInOut)
         UIView.setAnimationDuration(keyboardInfo.animationDuration)
         
         tableView.contentInset = contentInset
