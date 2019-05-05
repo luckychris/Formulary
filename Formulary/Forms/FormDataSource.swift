@@ -31,7 +31,7 @@ class FormDataSource: NSObject, UITableViewDataSource {
         var cell = tableView.dequeueReusableCell(withIdentifier: row.cellIdentifier) as! FormTableViewCell
         cell.formRow = row
         if let _ = cell as? ControllerSpringingCell, let cell = cell as? UITableViewCell {
-            cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
+            cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
         }
         return cell as! UITableViewCell
     }
