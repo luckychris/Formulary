@@ -115,14 +115,14 @@ class NamedTextField: UITextField {
     override func textRect(forBounds bounds:CGRect) -> CGRect {
         var r = super.textRect(forBounds: bounds)
         let top = ceil(nameLabel.font.lineHeight)
-        r = UIEdgeInsetsInsetRect(r, UIEdgeInsetsMake(top + topMargin + marginForContent, 0.0, -marginForContent, 0.0))
+        r = r.inset(by: UIEdgeInsets(top: top + topMargin + marginForContent, left: 0.0, bottom: -marginForContent, right: 0.0))
         return r.integral
     }
     
     override func editingRect(forBounds bounds:CGRect) -> CGRect {
         var r = super.editingRect(forBounds: bounds)
         let top = ceil(nameLabel.font.lineHeight)
-        r = UIEdgeInsetsInsetRect(r, UIEdgeInsetsMake(top + topMargin + marginForContent, 0.0, -marginForContent, 0.0))
+        r = r.inset(by: UIEdgeInsets(top: top + topMargin + marginForContent, left: 0.0, bottom: -marginForContent, right: 0.0))
         return r.integral
     }
     
