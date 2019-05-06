@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 //MARK: Sub-Types
 
@@ -148,7 +149,9 @@ class TextEntryCell: UITableViewCell, FormTableViewCell {
             contentView.addSubview(newTextField)
             textField = newTextField
             contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-15-[textField]-|", options: [], metrics: nil, views: ["textField":newTextField]))
-            contentView.addConstraints([NSLayoutConstraint(item: contentView, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.height, multiplier: 1.0, constant: 60.0)])
+            let constraint = NSLayoutConstraint(item: contentView, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.height, multiplier: 1.0, constant: 60.0)
+            constraint.priority = .defaultLow
+            contentView.addConstraints([constraint])
             textField = newTextField
         }
         formatterAdapter = row.formatter.map { FormatterAdapter(formatter: $0) }

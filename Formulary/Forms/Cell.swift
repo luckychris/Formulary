@@ -81,7 +81,11 @@ class BasicFormCell :UITableViewCell, FormTableViewCell {
     func configureCell(_ row: inout FormRow) {
         
         action = nil
-        contentView.addConstraints([NSLayoutConstraint(item: contentView, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.height, multiplier: 1.0, constant: 60.0)])
+        
+        let constraint = NSLayoutConstraint(item: contentView, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.height, multiplier: 1.0, constant: 60.0)
+        constraint.priority = UILayoutPriority.defaultLow
+        
+        contentView.addConstraints([constraint])
         
         switch row.type {
         case .toggleSwitch:
