@@ -148,9 +148,9 @@ class TextEntryCell: UITableViewCell, FormTableViewCell {
             newTextField.translatesAutoresizingMaskIntoConstraints = false
             contentView.addSubview(newTextField)
             textField = newTextField
-            contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-15-[textField]-|", options: [], metrics: nil, views: ["textField":newTextField]))
+            contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-15-[textField]-15-|", options: [], metrics: nil, views: ["textField":newTextField]))
             let constraint = NSLayoutConstraint(item: contentView, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.height, multiplier: 1.0, constant: 60.0)
-            constraint.priority = .defaultLow
+            constraint.priority = .defaultHigh
             contentView.addConstraints([constraint])
             textField = newTextField
         }

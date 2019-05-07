@@ -14,6 +14,8 @@ class FormDataSource: NSObject, UITableViewDataSource {
     init(form: Form, tableView: UITableView) {
         self.form = form
         tableView.registerFormCellClasses(FormDataSource.cellRegistry)
+        
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
     }
     
     // MARK: Data
@@ -33,7 +35,10 @@ class FormDataSource: NSObject, UITableViewDataSource {
         if let _ = cell as? ControllerSpringingCell, let cell = cell as? UITableViewCell {
             cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
         }
-        return cell as! UITableViewCell
+        
+        let realCell : UITableViewCell = cell as! UITableViewCell
+        
+        return realCell
     }
     
     // MARK: Headers and Footers
@@ -41,7 +46,7 @@ class FormDataSource: NSObject, UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return form.sections[section].name
     }
-    
+
     func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         return form.sections[section].footerName
     }
